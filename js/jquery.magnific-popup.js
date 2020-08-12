@@ -1,18 +1,18 @@
-/*! Magnific Popup - v0.9.9 - 2013-11-15
+/*! 放大弹出窗口-v0.9.9-2013-11-15
 * http://dimsemenov.com/plugins/magnific-popup/
-* Copyright (c) 2013 Dmitry Semenov; */
+*  */
 ;(function($) {
 
-/*>>core*/
+/*>>核心*/
 /**
  * 
- * Magnific Popup Core JS file
+ * 放大弹出核心JS文件
  * 
  */
 
 
 /**
- * Private static constants
+ * 私有静态常量
  */
 var CLOSE_EVENT = 'Close',
 	BEFORE_CLOSE_EVENT = 'BeforeClose',
@@ -29,9 +29,9 @@ var CLOSE_EVENT = 'Close',
 
 
 /**
- * Private vars 
+ * 私人VAR 
  */
-var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
+var mfp, // 因为我们只有一个MagnificPopup对象的实例，在本地将其定义为不使用“this”
 	MagnificPopup = function(){},
 	_isJQ = !!(window.jQuery),
 	_prevStatus,
@@ -44,7 +44,7 @@ var mfp, // As we have only one instance of MagnificPopup object, we define it l
 
 
 /**
- * Private functions
+ * 私人功能
  */
 var _mfpOn = function(name, f) {
 		mfp.ev.on(NS + name + EVENT_NS, f);
@@ -69,7 +69,7 @@ var _mfpOn = function(name, f) {
 		mfp.ev.triggerHandler(NS + e, data);
 
 		if(mfp.st.callbacks) {
-			// converts "mfpEventName" to "eventName" callback and triggers it if it's present
+			// 将“mfpEventName”转换为“eventName”回调并触发它（如果存在）
 			e = e.charAt(0).toLowerCase() + e.slice(1);
 			if(mfp.st.callbacks[e]) {
 				mfp.st.callbacks[e].apply(mfp, $.isArray(data) ? data : [data]);
@@ -83,7 +83,7 @@ var _mfpOn = function(name, f) {
 		}
 		return mfp.currTemplate.closeBtn;
 	},
-	// Initialize Magnific Popup only when called at least once
+	// 仅当至少调用一次时才初始化放大弹出菜单
 	_checkInstance = function() {
 		if(!$.magnificPopup.instance) {
 			mfp = new MagnificPopup();
@@ -91,10 +91,10 @@ var _mfpOn = function(name, f) {
 			$.magnificPopup.instance = mfp;
 		}
 	},
-	// CSS transition detection, http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
+	// CSS转换检测
 	supportsTransitions = function() {
-		var s = document.createElement('p').style, // 's' for style. better to create an element if body yet to exist
-			v = ['ms','O','Moz','Webkit']; // 'v' for vendor
+		var s = document.createElement('p').style, // 's代表实体。如果实体还不存在，最好创建一个元素
+			v = ['ms','O','Moz','Webkit']; // “v”代表供应商
 
 		if( s['transition'] !== undefined ) {
 			return true; 
@@ -112,15 +112,15 @@ var _mfpOn = function(name, f) {
 
 
 /**
- * Public functions
+ * 公共职能
  */
 MagnificPopup.prototype = {
 
 	constructor: MagnificPopup,
 
 	/**
-	 * Initializes Magnific Popup plugin. 
-	 * This function is triggered only once when $.fn.magnificPopup or $.magnificPopup is executed
+	 * 初始化放大弹出插件
+	 * 当$时，此函数只触发一次。放大弹出菜单或执行$.magnificPopup
 	 */
 	init: function() {
 		var appVersion = navigator.appVersion;
@@ -131,8 +131,8 @@ MagnificPopup.prototype = {
 		mfp.isIOS = (/iphone|ipad|ipod/gi).test(appVersion);
 		mfp.supportsTransition = supportsTransitions();
 
-		// We disable fixed positioned lightbox on devices that don't handle it nicely.
-		// If you know a better way of detecting this - let me know.
+		// 我们在处理不好的设备上禁用固定位置
+		// 如果你知道更好的方法来检测这个-让我知道
 		mfp.probablyMobile = (mfp.isAndroid || mfp.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent) );
 		_body = $(document.body);
 		_document = $(document);
@@ -141,15 +141,15 @@ MagnificPopup.prototype = {
 	},
 
 	/**
-	 * Opens popup
-	 * @param  data [description]
+	 * 打开弹出窗口
+	 * @参数数据[说明]
 	 */
 	open: function(data) {
 
 		var i;
 
 		if(data.isObj === false) { 
-			// convert jQuery collection to array to avoid conflicts later
+			// 将jQuery集合转换为数组以避免以后发生冲突
 			mfp.items = data.items.toArray();
 
 			mfp.index = 0;
@@ -170,7 +170,7 @@ MagnificPopup.prototype = {
 			mfp.index = data.index || 0;
 		}
 
-		// if popup is already opened - we just update the content
+		// 如果弹出窗口已经打开-只更新内容
 		if(mfp.isOpen) {
 			mfp.updateItemHTML();
 			return;
@@ -206,11 +206,11 @@ MagnificPopup.prototype = {
 		}
 		
 
-		// Building markup
-		// main containers are created only once
+		// 标记
+		// 主容器只创建一次
 		if(!mfp.bgOverlay) {
 
-			// Dark overlay
+			// 深色覆盖
 			mfp.bgOverlay = _getEl('bg').on('click'+EVENT_NS, function() {
 				mfp.close();
 			});
@@ -230,7 +230,7 @@ MagnificPopup.prototype = {
 		}
 
 
-		// Initializing modules
+		// 初始化模块
 		var modules = $.magnificPopup.modules;
 		for(i = 0; i < modules.length; i++) {
 			var n = modules[i];
@@ -241,7 +241,7 @@ MagnificPopup.prototype = {
 
 
 		if(mfp.st.showCloseBtn) {
-			// Close button
+			// 关闭按钮
 			if(!mfp.st.closeBtnInside) {
 				mfp.wrap.append( _getCloseBtn() );
 			} else {
@@ -280,7 +280,7 @@ MagnificPopup.prototype = {
 		
 
 		if(mfp.st.enableEscapeKey) {
-			// Close on ESC key
+			// 按ESC键关闭
 			_document.on('keyup' + EVENT_NS, function(e) {
 				if(e.keyCode === 27) {
 					mfp.close();
@@ -301,7 +301,7 @@ MagnificPopup.prototype = {
 			mfp.wrap.addClass(_wrapClasses);
 
 
-		// this triggers recalculation of layout, so we get it once to not to trigger twice
+		// 这会触发布局的重新计算，所以只需要一次就不会触发两次
 		var windowHeight = mfp.wH = _window.height();
 
 		
@@ -320,7 +320,7 @@ MagnificPopup.prototype = {
 			if(!mfp.isIE7) {
 				windowStyles.overflow = 'hidden';
 			} else {
-				// ie7 double-scroll bug
+				// ie7双滚动错误
 				$('body, html').css('overflow', 'hidden');
 			}
 		}
@@ -335,35 +335,35 @@ MagnificPopup.prototype = {
 			mfp._addClassToMFP( classesToadd );
 		}
 
-		// add content
+		// 添加内容
 		mfp.updateItemHTML();
 
 		_mfpTrigger('BuildControls');
 
 
-		// remove scrollbar, add margin e.t.c
+		// 删除滚动条，添加页边距e.t.c
 		$('html').css(windowStyles);
 		
-		// add everything to DOM
+		// 将所有内容添加到DOM
 		mfp.bgOverlay.add(mfp.wrap).prependTo( document.body );
 
 
 
-		// Save last focused element
+		// 保存最后一个聚焦元素
 		mfp._lastFocusedEl = document.activeElement;
 		
-		// Wait for next cycle to allow CSS transition
+		// 等待下一个周期以允许CSS转换
 		setTimeout(function() {
 			
 			if(mfp.content) {
 				mfp._addClassToMFP(READY_CLASS);
 				mfp._setFocus();
 			} else {
-				// if content is not defined (not loaded e.t.c) we add class only for BG
+				// 如果内容没有定义（没有加载e.t.c），我们只为BG添加类
 				mfp.bgOverlay.addClass(READY_CLASS);
 			}
 			
-			// Trap the focus in popup
+			// 在弹出窗口中捕获焦点
 			_document.on('focusin' + EVENT_NS, mfp._onFocusIn);
 
 		}, 16);
@@ -376,14 +376,14 @@ MagnificPopup.prototype = {
 	},
 
 	/**
-	 * Closes the popup
+	 * 关闭弹出窗口
 	 */
 	close: function() {
 		if(!mfp.isOpen) return;
 		_mfpTrigger(BEFORE_CLOSE_EVENT);
 
 		mfp.isOpen = false;
-		// for CSS3 animation
+		// 对于CSS3动画
 		if(mfp.st.removalDelay && !mfp.isLowIE && mfp.supportsTransition )  {
 			mfp._addClassToMFP(REMOVING_CLASS);
 			setTimeout(function() {
@@ -395,7 +395,7 @@ MagnificPopup.prototype = {
 	},
 
 	/**
-	 * Helper for close() function
+	 * close（）函数
 	 */
 	_close: function() {
 		_mfpTrigger(CLOSE_EVENT);
@@ -425,12 +425,12 @@ MagnificPopup.prototype = {
 		_document.off('keyup' + EVENT_NS + ' focusin' + EVENT_NS);
 		mfp.ev.off(EVENT_NS);
 
-		// clean up DOM elements that aren't removed
+		// 清理未删除的DOM元素
 		mfp.wrap.attr('class', 'mfp-wrap').removeAttr('style');
 		mfp.bgOverlay.attr('class', 'mfp-bg');
 		mfp.container.attr('class', 'mfp-container');
 
-		// remove close button from target element
+		// 从目标元素中删除关闭按钮
 		if(mfp.st.showCloseBtn &&
 		(!mfp.st.closeBtnInside || mfp.currTemplate[mfp.currItem.type] === true)) {
 			if(mfp.currTemplate.closeBtn)
@@ -439,7 +439,7 @@ MagnificPopup.prototype = {
 
 
 		if(mfp._lastFocusedEl) {
-			$(mfp._lastFocusedEl).focus(); // put tab focus back
+			$(mfp._lastFocusedEl).focus(); // 放回制表符焦点
 		}
 		mfp.currItem = null;	
 		mfp.content = null;
@@ -452,7 +452,7 @@ MagnificPopup.prototype = {
 	updateSize: function(winHeight) {
 
 		if(mfp.isIOS) {
-			// fixes iOS nav bars https://github.com/dimsemenov/Magnific-Popup/issues/2
+			// 修复iOS导航栏https://github.com/dimsemenov/Magnific-Popup/issues/2
 			var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
 			var height = window.innerHeight * zoomLevel;
 			mfp.wrap.css('height', height);
@@ -460,7 +460,7 @@ MagnificPopup.prototype = {
 		} else {
 			mfp.wH = winHeight || _window.height();
 		}
-		// Fixes #84: popup incorrectly positioned with position:relative on body
+		// 修正#84:弹出窗口的位置错误位置：相对开
 		if(!mfp.fixedContentPos) {
 			mfp.wrap.css('height', mfp.wH);
 		}
@@ -470,12 +470,12 @@ MagnificPopup.prototype = {
 	},
 
 	/**
-	 * Set content of popup based on current index
+	 * 根据当前索引设置弹出窗口的内容
 	 */
 	updateItemHTML: function() {
 		var item = mfp.items[mfp.index];
 
-		// Detach and perform modifications
+		// 分离并执行修改
 		mfp.contentContainer.detach();
 
 		if(mfp.content)
@@ -488,8 +488,8 @@ MagnificPopup.prototype = {
 		var type = item.type;	
 
 		_mfpTrigger('BeforeChange', [mfp.currItem ? mfp.currItem.type : '', type]);
-		// BeforeChange event works like so:
-		// _mfpOn('BeforeChange', function(e, prevType, newType) { });
+		// BeforeChange事件的工作原理如下:
+		// _mfpOn（'BeforeChange'，函数（e，prevType，newType） { });
 		
 		mfp.currItem = item;
 
@@ -500,13 +500,13 @@ MagnificPopup.prototype = {
 		if(!mfp.currTemplate[type]) {
 			var markup = mfp.st[type] ? mfp.st[type].markup : false;
 
-			// allows to modify markup
+			// 允许修改标记
 			_mfpTrigger('FirstMarkupParse', markup);
 
 			if(markup) {
 				mfp.currTemplate[type] = $(markup);
 			} else {
-				// if there is no markup found we just define that template is parsed
+				// 如果没有找到标记，需定义要解析的模板
 				mfp.currTemplate[type] = true;
 			}
 		}
@@ -523,7 +523,7 @@ MagnificPopup.prototype = {
 		_mfpTrigger(CHANGE_EVENT, item);
 		_prevContentType = item.type;
 		
-		// Append container back after its content changed
+		// 在容器内容更改后将其追加
 		mfp.container.prepend(mfp.contentContainer);
 
 		_mfpTrigger('AfterChange');
@@ -531,7 +531,7 @@ MagnificPopup.prototype = {
 
 
 	/**
-	 * Set HTML content of popup
+	 * 设置弹出菜单的HTML内容
 	 */
 	appendContent: function(newContent, type) {
 		mfp.content = newContent;
@@ -539,7 +539,7 @@ MagnificPopup.prototype = {
 		if(newContent) {
 			if(mfp.st.showCloseBtn && mfp.st.closeBtnInside &&
 				mfp.currTemplate[type] === true) {
-				// if there is no markup, we just append close button element inside
+				// 如果没有标记，只在内部附加close button元素
 				if(!mfp.content.find('.mfp-close').length) {
 					mfp.content.append(_getCloseBtn());
 				}
@@ -560,8 +560,8 @@ MagnificPopup.prototype = {
 
 	
 	/**
-	 * Creates Magnific Popup data object based on given data
-	 * @param  {int} index Index of item to parse
+	 * 基于给定数据创建放大弹出式数据对象
+	 * @要分析的项的param{int}索引索引
 	 */
 	parseEl: function(index) {
 		var item = mfp.items[index],
@@ -576,7 +576,7 @@ MagnificPopup.prototype = {
 		if(item.el) {
 			var types = mfp.types;
 
-			// check for 'mfp-TYPE' class
+			// 检查“mfp TYPE”类
 			for(var i = 0; i < types.length; i++) {
 				if( item.el.hasClass('mfp-'+types[i]) ) {
 					type = types[i];
@@ -601,7 +601,7 @@ MagnificPopup.prototype = {
 
 
 	/**
-	 * Initializes single popup or a group of popups
+	 * 初始化单个弹出窗口或一组弹出窗口
 	 */
 	addGroup: function(el, options) {
 		var eHandler = function(e) {
@@ -644,7 +644,7 @@ MagnificPopup.prototype = {
 				if( !disableOn.call(mfp) ) {
 					return true;
 				}
-			} else { // else it's number
+			} else { // 否则就是数字
 				if( _window.width() < disableOn ) {
 					return true;
 				}
@@ -654,7 +654,7 @@ MagnificPopup.prototype = {
 		if(e.type) {
 			e.preventDefault();
 
-			// This will prevent popup from closing if element is inside and popup is already opened
+			// 如果元素在内部并且弹出窗口已经打开，这将阻止popup关闭
 			if(mfp.isOpen) {
 				e.stopPropagation();
 			}
@@ -670,7 +670,7 @@ MagnificPopup.prototype = {
 
 
 	/**
-	 * Updates text on preloader
+	 * 更新预加载程序上的文本
 	 */
 	updateStatus: function(status, text) {
 
@@ -687,7 +687,7 @@ MagnificPopup.prototype = {
 				status: status,
 				text: text
 			};
-			// allows to modify status
+			// 允许修改状态
 			_mfpTrigger('UpdateStatus', data);
 
 			status = data.status;
@@ -706,10 +706,10 @@ MagnificPopup.prototype = {
 
 
 	/*
-		"Private" helpers that aren't private at all
+		
 	 */
-	// Check to close popup or not
-	// "target" is an element that was clicked
+	// 检查是否关闭弹出窗口
+	// “target”是被单击的元素
 	_checkIfClose: function(target) {
 
 		if($(target).hasClass(PREVENT_CLOSE_CLASS)) {
@@ -723,15 +723,15 @@ MagnificPopup.prototype = {
 			return true;
 		} else {
 
-			// We close the popup if click is on close button or on preloader. Or if there is no content.
+			// 我们关闭弹出窗口，如果点击关闭按钮或预加载,或者如果没有内容
 			if(!mfp.content || $(target).hasClass('mfp-close') || (mfp.preloader && target === mfp.preloader[0]) ) {
 				return true;
 			}
 
-			// if click is outside the content
+			// 如果点击在内容之外
 			if(  (target !== mfp.content[0] && !$.contains(mfp.content[0], target))  ) {
 				if(closeOnBg) {
-					// last check, if the clicked element is in DOM, (in case it's removed onclick)
+					// 最后检查，如果单击的元素在DOM中（以防在单击时被删除）
 					if( $.contains(document, target) ) {
 						return true;
 					}
@@ -802,7 +802,7 @@ MagnificPopup.prototype = {
 	},
 
 	_getScrollbarSize: function() {
-		// thx David
+		// 
 		if(mfp.scrollbarSize === undefined) {
 			var scrollDiv = document.createElement("div");
 			scrollDiv.id = "mfp-sbm";
@@ -814,13 +814,13 @@ MagnificPopup.prototype = {
 		return mfp.scrollbarSize;
 	}
 
-}; /* MagnificPopup core prototype end */
+}; /* MagnificPopup核心原型结束 */
 
 
 
 
 /**
- * Public static functions
+ * 公共静态函数
  */
 $.magnificPopup = {
 	instance: null,
@@ -856,7 +856,7 @@ $.magnificPopup = {
 
 	defaults: {   
 
-		// Info about options is in docs:
+		// 有关选项的信息在文档中：
 		// http://dimsemenov.com/plugins/magnific-popup/documentation.html#options
 		
 		disableOn: 0,	
@@ -869,7 +869,7 @@ $.magnificPopup = {
 
 		preloader: true,
 
-		focus: '', // CSS selector of input to focus after popup is opened
+		focus: '', // 弹出窗口打开后焦点输入的CSS选择器
 		
 		closeOnContentClick: false,
 
@@ -909,7 +909,7 @@ $.fn.magnificPopup = function(options) {
 
 	var jqEl = $(this);
 
-	// We call some API method of first param is a string
+	// 某些API方法的第一个参数是一个字符串
 	if (typeof options === "string" ) {
 
 		if(options === 'open') {
@@ -933,13 +933,13 @@ $.fn.magnificPopup = function(options) {
 		}
 
 	} else {
-		// clone options obj
+		// 克隆选项对象
 		options = $.extend(true, {}, options);
 		
 		/*
-		 * As Zepto doesn't support .data() method for objects 
-		 * and it works only in normal browsers
-		 * we assign "options" object directly to the DOM element. FTW!
+		 * 因为Zepto不支持对象的.data（）方法
+		 * 而且它只能在普通浏览器中工作
+		 * 我们将“options”对象直接分配给DOM元素。FTW！
 		 */
 		if(_isJQ) {
 			jqEl.data('magnificPopup', options);
@@ -954,28 +954,43 @@ $.fn.magnificPopup = function(options) {
 };
 
 
-//Quick benchmark
+//快速基准测试
 /*
-var start = performance.now(),
-	i,
-	rounds = 1000;
+变量启动=表演。现在(),
 
-for(i = 0; i < rounds; i++) {
+我，
+
+轮数=1000；
+
+
+
+对于（i=0；i<rounds；i++）{
+
+
 
 }
-console.log('Test #1:', performance.now() - start);
 
-start = performance.now();
-for(i = 0; i < rounds; i++) {
+控制台.log（“测试1:”，表演。现在（）—启动）；
+
+
+
+开始=表演。现在();
+
+对于（i=0；i<rounds；i++）{
+
+
 
 }
-console.log('Test #2:', performance.now() - start);
+
+控制台.log（“测试2:”，表演。现在（）—启动）；
+
 */
 
 
-/*>>core*/
+/*>>核心*/
 
-/*>>inline*/
+
+/*>>内联*/
 
 var INLINE_NS = 'inline',
 	_hiddenClass,
@@ -990,7 +1005,7 @@ var INLINE_NS = 'inline',
 
 $.magnificPopup.registerModule(INLINE_NS, {
 	options: {
-		hiddenClass: 'hide', // will be appended with `mfp-` prefix
+		hiddenClass: 'hide', // 将附加`mfp-`前缀
 		markup: '',
 		tNotFound: 'Content not found'
 	},
@@ -1014,7 +1029,7 @@ $.magnificPopup.registerModule(INLINE_NS, {
 
 				if(el.length) {
 
-					// If target element has parent - we replace it with placeholder and put it back after popup is closed
+					// 如果目标元素有父元素-我们将其替换为占位符，并在弹出窗口关闭后将其放回
 					var parent = el[0].parentNode;
 					if(parent && parent.tagName) {
 						if(!_inlinePlaceholder) {
@@ -1022,7 +1037,7 @@ $.magnificPopup.registerModule(INLINE_NS, {
 							_inlinePlaceholder = _getEl(_hiddenClass);
 							_hiddenClass = 'mfp-'+_hiddenClass;
 						}
-						// replace target inline element with placeholder
+						// 用占位符替换目标内联元素
 						_lastInlineElement = el.after(_inlinePlaceholder).detach().removeClass(_hiddenClass);
 					}
 
@@ -1043,9 +1058,11 @@ $.magnificPopup.registerModule(INLINE_NS, {
 	}
 });
 
-/*>>inline*/
+/*>>内联*/
 
-/*>>ajax*/
+
+
+/*>>外*/
 var AJAX_NS = 'ajax',
 	_ajaxCur,
 	_removeAjaxCursor = function() {
@@ -1131,7 +1148,7 @@ $.magnificPopup.registerModule(AJAX_NS, {
 
 /*>>ajax*/
 
-/*>>image*/
+/*>>图像*/
 var _imgInterval,
 	_getTitle = function(item) {
 		if(item.data && item.data.title !== undefined) 
@@ -1201,7 +1218,7 @@ $.magnificPopup.registerModule('image', {
 
 			if(mfp.st.image.verticalFit) {
 				var decr = 0;
-				// fix box-sizing in ie7/8
+				// 固定ie7/8中的盒子尺寸
 				if(mfp.isLowIE) {
 					decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
 				}
@@ -1232,7 +1249,7 @@ $.magnificPopup.registerModule('image', {
 		},
 
 		/**
-		 * Function that loops until the image has size to display elements that rely on it asap
+		 * 函数循环，直到图像有大小，以便尽快显示依赖它的元素
 		 */
 		findImageSize: function(item) {
 
@@ -1243,7 +1260,7 @@ $.magnificPopup.registerModule('image', {
 					if(_imgInterval) {
 						clearInterval(_imgInterval);
 					}
-					// decelerating interval that checks for size of an image
+					// 检查图像大小的减速间隔
 					_imgInterval = setInterval(function() {
 						if(img.naturalWidth > 0) {
 							mfp._onImageHasSize(item);
@@ -1272,7 +1289,7 @@ $.magnificPopup.registerModule('image', {
 
 			var guard = 0,
 
-				// image load complete handler
+				// 映像加载完成处理程序
 				onLoadComplete = function() {
 					if(item) {
 						if (item.img[0].complete) {
@@ -1291,7 +1308,7 @@ $.magnificPopup.registerModule('image', {
 							
 						}
 						else {
-							// if image complete check fails 200 times (20 sec), we assume that there was an error.
+							// 如果图像完整性检查失败200次（20秒），假设存在错误。
 							guard++;
 							if(guard < 200) {
 								setTimeout(onLoadComplete,100);
@@ -1302,7 +1319,7 @@ $.magnificPopup.registerModule('image', {
 					}
 				},
 
-				// image error handler
+				// 图像错误处理程序
 				onLoadError = function() {
 					if(item) {
 						item.img.off('.mfploader');
@@ -1326,8 +1343,9 @@ $.magnificPopup.registerModule('image', {
 				item.img = $(img).on('load.mfploader', onLoadComplete).on('error.mfploader', onLoadError);
 				img.src = item.src;
 
-				// without clone() "error" event is not firing when IMG is replaced by new IMG
-				// TODO: find a way to avoid such cloning
+				//如果没有clone（），则当IMG被新IMG替换时，不会触发“error”事件
+
+               //TODO:想办法避免这种克隆
 				if(el.is('img')) {
 					item.img = item.img.clone();
 				}
@@ -1372,9 +1390,15 @@ $.magnificPopup.registerModule('image', {
 
 
 
+
 /*>>image*/
 
 /*>>zoom*/
+	
+/*>>图像*/
+
+
+/*>>缩放*/
 var hasMozTransform,
 	getHasMozTransform = function() {
 		if(hasMozTransform === undefined) {
@@ -1435,7 +1459,7 @@ $.magnificPopup.registerModule('zoom', {
 					clearTimeout(openTimeout);
 					mfp.content.css('visibility', 'hidden');
 
-					// Basically, all code below does is clones existing image, puts in on top of the current one and animated it
+					// 基本上，下面的代码所做的就是克隆现有的图像，将其放在当前图像之上并对其进行动画处理
 					
 					image = mfp._getItemToZoom();
 
@@ -1460,14 +1484,14 @@ $.magnificPopup.registerModule('zoom', {
 								animatedImg.remove();
 								image = animatedImg = null;
 								_mfpTrigger('ZoomAnimationEnded');
-							}, 16); // avoid blink when switching images 
+							}, 16); // 切换图像时避免闪烁 
 
-						}, duration); // this timeout equals animation duration
+						}, duration); // 此超时等于动画持续时间
 
-					}, 16); // by adding this timeout we avoid short glitch at the beginning of animation
+					}, 16); // 通过添加此超时，避免动画开始时出现短故障
 
 
-					// Lots of timeouts...
+					// 超时。。。
 				}
 			});
 			_mfpOn(BEFORE_CLOSE_EVENT+ns, function() {
@@ -1520,7 +1544,7 @@ $.magnificPopup.registerModule('zoom', {
 			}
 		},
 
-		// Get element postion relative to viewport
+		// 获取相对于视口的元素位置
 		_getOffset: function(isLarge) {
 			var el;
 			if(isLarge) {
@@ -1537,16 +1561,16 @@ $.magnificPopup.registerModule('zoom', {
 
 			/*
 			
-			Animating left + top + width/height looks glitchy in Firefox, but perfect in Chrome. And vice-versa.
+			在Firefox中设置左+上+宽/高的动画看起来有点小问题，但在Chrome中却很完美。反之亦然。
 
 			 */
 			var obj = {
 				width: el.width(),
-				// fix Zepto height+padding issue
+				// 修复Zepto高度+衬垫问题
 				height: (_isJQ ? el.innerHeight() : el[0].offsetHeight) - paddingBottom - paddingTop
 			};
 
-			// I hate to do this, but there is no another option
+			
 			if( getHasMozTransform() ) {
 				obj['-moz-transform'] = obj['transform'] = 'translate(' + offset.left + 'px,' + offset.top + 'px)';
 			} else {
@@ -1561,9 +1585,16 @@ $.magnificPopup.registerModule('zoom', {
 
 
 
+
 /*>>zoom*/
 
 /*>>iframe*/
+
+
+/*>>缩放*/
+
+
+/*>>帧*/
 
 var IFRAME_NS = 'iframe',
 	_emptyPage = '//about:blank',
@@ -1572,12 +1603,12 @@ var IFRAME_NS = 'iframe',
 		if(mfp.currTemplate[IFRAME_NS]) {
 			var el = mfp.currTemplate[IFRAME_NS].find('iframe');
 			if(el.length) { 
-				// reset src after the popup is closed to avoid "video keeps playing after popup is closed" bug
+				// 关闭弹出窗口后重置src，以避免“弹出窗口关闭后视频继续播放”错误
 				if(!isShowing) {
 					el[0].src = _emptyPage;
 				}
 
-				// IE8 black screen bug fix
+				//IE8黑屏错误修复
 				if(mfp.isIE8) {
 					el.css('display', isShowing ? 'block' : 'none');
 				}
@@ -1595,7 +1626,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 
 		srcAction: 'iframe_src',
 
-		// we don't care and support only one default type of URL by default
+		// 默认情况下，我们不关心和支持一种默认类型的URL
 		patterns: {
 			youtube: {
 				index: 'youtube.com', 
@@ -1621,12 +1652,12 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 			_mfpOn('BeforeChange', function(e, prevType, newType) {
 				if(prevType !== newType) {
 					if(prevType === IFRAME_NS) {
-						_fixIframeBugs(); // iframe if removed
+						_fixIframeBugs(); // 如果取下了iframe
 					} else if(newType === IFRAME_NS) {
-						_fixIframeBugs(true); // iframe is showing
+						_fixIframeBugs(true); // iframe正在显示
 					} 
-				}// else {
-					// iframe source is switched, don't do anything
+				}// 其他的 {
+					// 如果帧源被切换，不要做任何事
 				//}
 			});
 
@@ -1649,7 +1680,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 						}
 					}
 					embedSrc = this.src.replace('%id%', embedSrc );
-					return false; // break;
+					return false; // 打破;
 				}
 			});
 			
@@ -1668,12 +1699,17 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 
 
 
-/*>>iframe*/
+/*>>帧*/
 
-/*>>gallery*/
+
+
+/*>>画廊*/
+
 /**
- * Get looped index depending on number of slides
- */
+
+*根据幻灯片的数量获取循环索引
+
+*/
 var _getLoopedId = function(index) {
 		var numSlides = mfp.items.length;
 		if(index > numSlides - 1) {
@@ -1708,7 +1744,7 @@ $.magnificPopup.registerModule('gallery', {
 				ns = '.mfp-gallery',
 				supportsFastClick = Boolean($.fn.mfpFastClick);
 
-			mfp.direction = true; // true - next, false - prev
+			mfp.direction = true; // true-下一个，false-prev
 			
 			if(!gSt || !gSt.enabled ) return false;
 
@@ -1759,7 +1795,7 @@ $.magnificPopup.registerModule('gallery', {
 						mfp.next();
 					});	
 
-					// Polyfill for :before and :after (adds elements with classes mfp-a and mfp-b)
+					// Polyfill for:before和：after（添加类为mfp-a和mfp-b的元素）
 					if(mfp.isIE7) {
 						_getEl('b', arrowLeft[0], false, true);
 						_getEl('a', arrowLeft[0], false, true);
@@ -1851,7 +1887,7 @@ $.magnificPopup.registerModule('gallery', {
 });
 
 /*
-Touch Support that might be implemented some day
+（暂时废弃）触摸支持，也许有一天会实现不过，现在还是想想就好了
 
 addSwipeGesture: function() {
 	var startX,
@@ -1913,7 +1949,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 		replaceSrc: function(item) {
 			return item.src.replace(/\.\w+$/, function(m) { return '@2x' + m; });
 		},
-		ratio: 1 // Function or number.  Set to 1 to disable.
+		ratio: 1 // 函数或数字。设置为1可禁用。
 	},
 	proto: {
 		initRetina: function() {
@@ -1945,10 +1981,10 @@ $.magnificPopup.registerModule(RETINA_NS, {
 
 /*>>fastclick*/
 /**
- * FastClick event implementation. (removes 300ms delay on touch devices)
- * Based on https://developers.google.com/mobile/articles/fast_buttons
+ * FastClick事件实现。（消除触摸设备上的300ms延迟）
+ * 基于https://developers.google.com/mobile/articles/fast_按钮
  *
- * You may use it outside the Magnific Popup by calling just:
+ * 可以在放大弹出窗口之外使用它，只需调用：
  *
  * $('.your-el').mfpFastClick(function() {
  *     console.log('Clicked!');
@@ -1958,8 +1994,8 @@ $.magnificPopup.registerModule(RETINA_NS, {
  * $('.your-el').destroyMfpFastClick();
  * 
  * 
- * Note that it's a very basic and simple implementation, it blocks ghost click on the same element where it was bound.
- * If you need something more advanced, use plugin by FT Labs https://github.com/ftlabs/fastclick
+ * 注意，这是一个非常基本和简单的实现，它阻止了在绑定它的同一个元素上的重影单击。
+ *如果你需要更先进的东西，使用FT实验室的插件https://github.com/ftlabs/fastclick
  * 
  */
 
@@ -1973,7 +2009,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 		ns = '.'+eName;
 
 
-	// As Zepto.js doesn't have an easy way to add custom events (like jQuery), so we implement it in this way
+	// 有一种简单的方法来添加自定义事件（如jQuery），所以我们用这种方式实现它
 	$.fn.mfpFastClick = function(callback) {
 
 		return $(this).each(function() {
@@ -2038,5 +2074,5 @@ $.magnificPopup.registerModule(RETINA_NS, {
 	};
 })();
 
-/*>>fastclick*/
+/*>>快速单击*/
  _checkInstance(); })(window.jQuery || window.Zepto);

@@ -1,4 +1,4 @@
-/* Styles for dialog window */
+/* 对话框窗口的样式 */
 #small-dialog,#small-dialog2,#small-dialog3,#small-dialog4,#small-dialog5,#small-dialog6,#small-dialog7,#small-dialog8{
 	background: #FFF;
     padding: 20px;
@@ -48,10 +48,10 @@ a.play-icon.popup-with-zoom-anim img:hover {
 /**
 
 /**
- * Fade-zoom animation for first dialog
+ * 第一个对话框的淡入缩放动画
  */
 
-/* start state */
+/* 启动状态 */
 .my-mfp-zoom-in #small-dialog {
 opacity: 0;
 -webkit-transition: all 0.2s ease-in-out;
@@ -286,17 +286,17 @@ opacity: 0;
 -o-transition: opacity 0.3s ease-out;
 transition: opacity 0.3s ease-out;
 }
-/* animate in */
+/* 动画制作 */
 .my-mfp-zoom-in.mfp-ready.mfp-bg {
   background: #FFF;
   opacity: .5;
 }
-/* animate out */
+/* 动画输出 */
 .my-mfp-zoom-in.mfp-removing.mfp-bg {
 opacity: 0;
 }
 /**
-/* Magnific Popup CSS */
+/* 放大弹出式CSS样式 */
 .mfp-bg {
   top: 0;
   left: 0;
