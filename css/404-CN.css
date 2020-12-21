@@ -1,0 +1,135 @@
+@charset "utf-8";
+
+#logo0{
+		position: absolute;
+		top: -50px;
+		left: 630px;
+		color: white;
+		font-size: 140px;
+		letter-spacing:30px;
+		user-select:none;
+		font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
+	}
+	.a{
+		color: white;
+		text-decoration:none;
+		user-select:none;
+	}
+	#text{
+		position: absolute;
+		top: 187px;
+		left: 415px;
+		width: 1100px;
+		height: 23px;
+		color: white;
+		font-size: 30px;
+		letter-spacing:10px;
+		user-select:none;
+	}
+	#text-2{
+		position: absolute;
+		top: 240px;
+		left: 620px;
+		width: 700px;
+		height: 23px;
+		color: white;
+		font-size: 30px;
+		letter-spacing:10px;
+		user-select:none;
+	}
+	#Button{
+		user-select:none;
+		text-decoration:none;
+		 color: white;
+	}
+	#Button-2{
+		position: absolute;
+		left: 480px;
+		top: 550px;
+		height: 60px;
+		width: 200px;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 15px;
+	}
+	#Button-3{
+		position: absolute;
+		left: 690px;
+		top: 550px;
+		height: 60px;
+		width: 200px;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 15px;
+	}
+	#Button-4{
+		position: absolute;
+		left: 900px;
+		top: 550px;
+		height: 60px;
+		width: 200px;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 15px;
+	}
+	#text-3{
+		position: absolute;
+		top: 826px;
+		left: 620px;
+		font-size: 15px;
+		user-select:none;
+	}/* IPC号的CCS样式 */
+	
+	#Horizontal line{
+		width: 400px; 
+		height: 1px; 
+		margin-top: 50px;
+	}
+
+
+/*---------------------------------------------------------------*/
+/*语言选择下拉框样式*/
+/*---------------------------------------------------------------*/
+
+
+.Language{
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	height: 30px;
+    width: 250px;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 15px;
+}
+
+#erji_ul{
+	margin: 8px 10px 1px -80px;
+	height: 30px;
+    width: 289px;
+	text-align: center;
+background: rgba(255, 255, 255, 0.1);
+}
+
+#erji_ul{
+	display: none;
+}
+
+ul li:hover #erji_ul{
+	display: block;
+}
+
+#erji_ul-2{
+	margin: -1px 10px 1px -80px;
+	height: 30px;
+    width: 289px;
+	text-align: center;
+background: rgba(255, 255, 255, 0.1);
+}
+
+#erji_ul-2{
+	display: none;
+}
+
+ul li:hover #erji_ul-2{
+	display: block;
+}
+
+
+
