@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+
+.video
+{
+	
+}
+
+#myVideo
+{
+	position: absolute;
+	top: 5px;
+	left: 30px;
+	z-index: 1;
+}
+
+#word
+{
+position: absolute;
+	top: 550px;
+	left: 40px;
+}
+
+#Control
+{
+position: absolute;
+	top: 490px;
+	left: 30px;
+}
+
+#Control-2
+{
+position: absolute;
+	top: 490px;
+	left: 105px;
+}
+#Control-3
+{
+position: absolute;
+	top: 490px;
+	left: 136px;
+}
+#Control-4
+{
+position: absolute;
+	top: 490px;
+	left: 167px;
+}

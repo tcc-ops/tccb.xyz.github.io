@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>播放器测试</title>
+<style type="text/css">
+@import url("css/stye.css");
+</style>
+</head>
+
+<body>
+<div class="video" style="text-align:center;">
+<button id="Control" onclick="playPause()">播放/暂停</button>  
+<button id="Control-2" onclick="toBig()">大</button>  
+<button id="Control-3" onclick="toNormal()">中</button>  
+<button id="Control-4" onclick="toSmall()">小</button>  
+<video id="myVideo" width="800" height="450" style="margin-top:10px; margin-left: auto">  
+<source src="vido/竹内まりや - プラスティック・ラブ (塑料般的爱情) (from 「Souvenir~Mariya Takeuchi Live」).mp4" type="video/mp4" />  
+您的浏览器不支持此HTML5 视频标签。  
+</video>  
+</div>  
+	<button style="position: absolute; top: 520px; left: 29px;"><a style="user-select:none; color: black; text-decoration:none;" href="index.html">返回（HOME）</a></button>
+	
+	<script type="text/javascript">  
+var myVideo=document.getElementById("myVideo");  
+function playPause()  
+{  
+if (myVideo.paused)  
+myVideo.play();  
+else  
+myVideo.pause();  
+}  
+function toBig()  
+{  
+myVideo.width=800;  
+}  
+function toNormal()  
+{  
+myVideo.width=600;  
+}  
+function toSmall()  
+{  
+myVideo.width=420;  
+}  
+</script>  
+	
+	
+	<div id="word">
+	<h4>HTML5-视频播放器</h4>
+		<h5>目前处于开发阶段（可以使用访问浏览器自带播放控件）</h5>
+	<h5>制作 测试 版本：0.001</h5>
+		<h5>测试播放的 视频 音频 均来自网络</h5>
+		<h5>作者：笛碧 @ 2020-12-23</h5>
+	</div>
+</body>
+</html>
