@@ -115,11 +115,13 @@ ul li:hover #erji_ul{
 	display: block;
 }
 
+
 #erji_ul-2{
 	margin: -1px 10px 1px -80px;
 	height: 30px;
     width: 289px;
 	text-align: center;
+
 background: rgba(255, 255, 255, 0.1);
 }
 
