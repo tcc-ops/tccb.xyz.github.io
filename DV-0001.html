@@ -22,7 +22,7 @@
 	<button style="position: absolute; top: 520px; left: 29px;"><a style="user-select:none; color: black; text-decoration:none;" href="index.html">返回（HOME）</a></button>
 	
 	<button style="position: absolute; top: 490px; left: 200px;" onclick="FullScreen()"><a title="全屏目前只能将网页全屏放大,无法全屏放大视频">全屏</a></button> 
-	
+	<button style="position: absolute; top: 490px; left: 245px;" onclick="exitFullscreen()"><a title="全屏目前只能将网页全屏放大,无法全屏放大视频">退出全屏</a></button>
 	<a style="position: absolute; top: 520px; left: 150px; " href="music/NIGHT RUNNING.mp3" download="NIGHT RUNNING.mp3">下载播放音频</a>  
 	<script type="text/javascript">  
 var myVideo=document.getElementById("myVideo");  
@@ -57,7 +57,20 @@ myVideo.width=420;
         ele.webkitRequestFullScreen();
     }
 }
-//全屏部分的JS代码			
+//全屏部分的JS代码
+			
+			
+			function exitFullscreen(element) {
+			    var de = document.querySelector(element) || document.documentElement;
+			    if (de.exitFullscreen) {
+			        de.exitFullscreen();
+			    } else if (de.mozCancelFullScreen) {
+			        de.mozCancelFullScreen();
+			    } else if (de.webkitCancelFullScreen) {
+			        de.webkitCancelFullScreen();
+			    }
+			}
+			//退出全屏部分的JS代码
 </script>  
 	
 	
